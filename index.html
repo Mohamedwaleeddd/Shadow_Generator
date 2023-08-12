@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>I Can Do It!!</title>
+  <style>
+  *{
+    color: white;
+    color: dodgerblue;
+  }
+    .box{
+      width: 300px;
+      margin: 32px;
+      font-family: sans-serif;
+      border: 1px dodgerblue solid;
+      padding: 16px;
+      background: #002;
+      border-radius: 3px;
+    }
+    .box input{ 
+      margin: 8px 0;
+      display: block;
+      width: 100%;
+      background: #003;
+    }
+    body{
+      background: #001;
+    }
+    input[type="text"]{
+      border: none;
+      height: 30px;
+      padding: 7px;
+      width: 95%;
+      border: 1px solid dodgerblue;
+    }
+    input[type="color"]{
+      width: 100%;
+      height: 55px;
+      border: 1px dodgerblue solid;
+    }
+  </style>
+</head>
+
+<body align="center">
+  <br><br>
+  <h1>css shadow</h1>
+  <div align="center" class="box">
+    <label for="">Offset x</label>
+    <input type="range" max="100" value="2" min="0" class="offset-x">
+    <label for="">Offset y</label>
+    <input type="range" max="100" value="2" min="0" class="offset-y">
+    <label for="">Blur radius</label>
+    <input type="range" max="100" value="2" min="0" class="blur-radius">
+    <label for="">Blur spread</label>
+    <input type="range" max="100" value="2" min="0" class="blur-spread">
+    <label for="">Color</label>
+    <input type="color" value="#000000" class="blur-color">
+    <input type="text" class="css-value" onclick="this.select()" readonly>
+  </div>
+  <script>
+    const box = document.querySelector('.box');
+    const x = document.querySelector('.offset-x');
+    const y = document.querySelector('.offset-y');
+    const radius = document.querySelector('.blur-radius');
+    const spread = document.querySelector('.blur-spread');
+    const color = document.querySelector('.blur-color');
+    const cssValue = document.querySelector('.css-value');
+
+    function updateBoxShadow(){
+      const v = `${x.value}px ${y.value}px ${radius.value}px ${spread.value}px ${color.value}`;
+      cssValue.value = v;
+      box.style.boxShadow = v;
+    }
+
+    [x, y, radius, spread, color].forEach(element => {
+      element.oninput = updateBoxShadow;
+    });
+  </script>
+</body>
+</html>
